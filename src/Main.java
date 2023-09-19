@@ -9,7 +9,6 @@ public class Main {
         myHashMapTest();
     }
 
-
     private static void myArrayListTest() {
 
         //Integer test

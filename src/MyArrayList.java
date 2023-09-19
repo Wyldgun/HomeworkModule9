@@ -22,26 +22,31 @@ public class MyArrayList<T> {
     }
 
     public T remove(int index) {
-        Object[] newData = new Object[data.length - 1];
-        Object temp = null;
-        boolean isFound = true;
-        for (int i = 0; i < data.length; i++) {
-            if (i == index) {
-                temp = data[i];
-                //newData[i] = "removed?";
-                isFound = false;
-                size--;
-            } else {
-                if (isFound){
-                    newData[i] = data[i];
+        if(index >= size){
+            System.out.println("Index " + index + " out of bounds for length " + size);
+            throw new IndexOutOfBoundsException();
+        } else {
+            Object[] newData = new Object[data.length - 1];
+            Object temp = null;
+            boolean isFound = true;
+            for (int i = 0; i < data.length; i++) {
+                if (i == index) {
+                    temp = data[i];
+                    //newData[i] = "removed?";
+                    isFound = false;
+                    size--;
                 } else {
-                    newData[i - 1] = data[i];
-                    i++;
+                    if (isFound){
+                        newData[i] = data[i];
+                    } else {
+                        newData[i - 1] = data[i];
+                        i++;
+                    }
                 }
             }
+            data = (T[]) newData;
+            return (T) temp;
         }
-        data = (T[]) newData;
-        return (T) temp;
     }
 
     public void clear() {
@@ -51,8 +56,13 @@ public class MyArrayList<T> {
         size = 0;
     }
 
-    public T get(int index) {
-        return (T) data[index];
+    public T get(int index){
+        if(index > size){
+            System.out.println("Index " + index + " out of bounds for length " + size);
+            throw new IndexOutOfBoundsException();
+        } else{
+            return (T) data[index];
+        }
     }
 
     public int size() {
@@ -69,4 +79,5 @@ public class MyArrayList<T> {
         }
         return "[" + result + "]";
     }
+
 }
