@@ -22,7 +22,7 @@ public class MyArrayList<T> {
     }
 
     public T remove(int index) {
-        if(index >= size){
+        if (index >= size || index < 0) {
             System.out.println("Index " + index + " out of bounds for length " + size);
             throw new IndexOutOfBoundsException();
         } else {
@@ -36,7 +36,7 @@ public class MyArrayList<T> {
                     isFound = false;
                     size--;
                 } else {
-                    if (isFound){
+                    if (isFound) {
                         newData[i] = data[i];
                     } else {
                         newData[i - 1] = data[i];
@@ -56,11 +56,11 @@ public class MyArrayList<T> {
         size = 0;
     }
 
-    public T get(int index){
-        if(index > size){
+    public T get(int index) {
+        if (index > size || index < 0) {
             System.out.println("Index " + index + " out of bounds for length " + size);
             throw new IndexOutOfBoundsException();
-        } else{
+        } else {
             return (T) data[index];
         }
     }
@@ -73,7 +73,7 @@ public class MyArrayList<T> {
     public String toString() {
         StringJoiner result = new StringJoiner(", ");
         for (int i = 0; i < size; i++) {
-            if(data[i] != null){
+            if (data[i] != null) {
                 result.add(data[i].toString());
             }
         }
